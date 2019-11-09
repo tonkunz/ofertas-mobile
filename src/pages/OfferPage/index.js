@@ -8,6 +8,7 @@ import {
   ScrollView
 } from 'react-native'
 import ImageSlider from '../../components/ImageSlider'
+import HTML from 'react-native-render-html'
 
 import { getOffer } from '../../services/api'
 
@@ -36,15 +37,22 @@ class OfferPage extends React.Component {
         {isLoading ? (
           <Text style={{ fontSize: 22 }}>..Loading Data..</Text>
         ) : (
-          <ScrollView>
+          <ScrollView style={styles.container}>
             <ImageSlider images={offer.images} />
-            <Text style={{ fontSize: 22 }}>{offer.title}</Text>
-            <Text style={{ fontSize: 16 }}>{offer.description}</Text>
-            <Text>Preço: R${offer.price}</Text>
-            <Button
-              title="Efetuar Compra"
-              onPress={() => navigation.navigate('CheckoutPage')}
-            />
+            <View style={styles.content}>
+              <Text style={styles.title}>{offer.title}</Text>
+              <HTML html={offer.description} style={styles.description} />
+              <View style={styles.priceSession}>
+                <Text styles={styles.offerText}>Preço de mercado:</Text>
+                <Text style={styles.marketPrice}>R${offer.market_price}</Text>
+                <Text styles={styles.offerText}>Preço da oferta:</Text>
+                <Text style={styles.offerPrice}>R${offer.price}</Text>
+              </View>
+              <Button
+                title="Efetuar Compra"
+                onPress={() => navigation.navigate('CheckoutPage')}
+              />
+            </View>
           </ScrollView>
         )}
       </View>
@@ -53,3 +61,48 @@ class OfferPage extends React.Component {
 }
 
 export default OfferPage
+
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 20
+  },
+
+  content: {
+    marginHorizontal: 20
+  },
+
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10
+  },
+
+  description: {
+    marginTop: 20,
+    fontSize: 16
+  },
+
+  priceSession: {
+    paddingBottom: 20,
+    alignItems: 'center'
+  },
+
+  offerText: {
+    fontSize: 16,
+    paddingTop: 5
+  },
+
+  marketPrice: {
+    fontWeight: 'bold',
+    fontSize: 25,
+    color: '#b22222',
+    paddingBottom: 10
+  },
+
+  offerPrice: {
+    fontWeight: 'bold',
+    fontSize: 55,
+    color: '#f0134d',
+    paddingBottom: 10
+  }
+})

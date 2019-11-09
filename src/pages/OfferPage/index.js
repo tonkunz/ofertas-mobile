@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button, Text, View, AsyncStorage, ScrollView } from 'react-native'
-import ImageSlider from '../../components/ImageSlider'
 import HTML from 'react-native-render-html'
+import ImageSlider from '../../components/ImageSlider'
+import Loading from '../../components/Loading'
 
 import styles from './styles'
 
@@ -28,9 +29,9 @@ class OfferPage extends React.Component {
     const { isLoading, offer } = this.state
 
     return (
-      <View>
+      <>
         {isLoading ? (
-          <Text style={{ fontSize: 22 }}>..Loading Data..</Text>
+          <Loading />
         ) : (
           <ScrollView style={styles.container}>
             <ImageSlider images={offer.images} />
@@ -50,7 +51,7 @@ class OfferPage extends React.Component {
             </View>
           </ScrollView>
         )}
-      </View>
+      </>
     )
   }
 }

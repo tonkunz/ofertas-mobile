@@ -46,7 +46,13 @@ class OfferPage extends React.Component {
               </View>
               <Button
                 title="Efetuar Compra"
-                onPress={() => navigation.navigate('CheckoutPage')}
+                onPress={() => {
+                  navigation.navigate('CheckoutPage', {
+                    id: offer.id,
+                    title: offer.title,
+                    price: offer.price
+                  })
+                }}
               />
             </View>
           </ScrollView>

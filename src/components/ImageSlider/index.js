@@ -1,5 +1,7 @@
 import React from 'react'
-import { FlatList, StyleSheet, Image, View, Dimensions } from 'react-native'
+import { FlatList, Image, View } from 'react-native'
+
+import styles from './styles'
 
 export default function ImageSlider({ images }) {
   return (
@@ -19,27 +21,3 @@ export default function ImageSlider({ images }) {
     </View>
   )
 }
-
-const { width } = Dimensions.get('window')
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 1,
-    marginBottom: 30
-  },
-
-  list: {
-    paddingHorizontal: 5
-  },
-
-  listItem: {
-    marginRight: 2
-  },
-
-  thumbnail: {
-    width: width - 30,
-    height: 200,
-    resizeMode: 'cover',
-    borderRadius: 2
-  }
-})

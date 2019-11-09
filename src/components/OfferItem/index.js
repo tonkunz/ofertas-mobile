@@ -1,13 +1,8 @@
 import React from 'react'
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  Dimensions,
-  AsyncStorage
-} from 'react-native'
+import { View, Text, Image, AsyncStorage } from 'react-native'
 import AppButton from '../AppButton'
+
+import styles from './styles'
 
 export default function OfferItem({ offer, navigation }) {
   function handleNextPage() {
@@ -30,42 +25,3 @@ export default function OfferItem({ offer, navigation }) {
     </View>
   )
 }
-
-const { width } = Dimensions.get('window')
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
-    marginBottom: 20,
-    alignItems: 'center'
-  },
-
-  thumbnail: {
-    width: width - 30,
-    height: 200,
-    resizeMode: 'cover',
-    borderRadius: 2
-  },
-
-  infoContainer: {
-    width: width - 30
-  },
-
-  offerTitle: {
-    fontSize: 18,
-    marginTop: 10
-  },
-
-  offerPrice: {
-    fontSize: 18,
-    paddingTop: 5,
-    textAlign: 'center',
-    paddingBottom: 5
-  },
-
-  offerPriceNumber: {
-    fontWeight: 'bold',
-    fontSize: 22,
-    color: '#f0134d'
-  }
-})

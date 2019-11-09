@@ -1,5 +1,13 @@
 import React from 'react'
-import { Button, Text, View, AsyncStorage } from 'react-native'
+import {
+  Button,
+  Text,
+  View,
+  AsyncStorage,
+  StyleSheet,
+  ScrollView
+} from 'react-native'
+import ImageSlider from '../../components/ImageSlider'
 
 import { getOffer } from '../../services/api'
 
@@ -20,21 +28,24 @@ class OfferPage extends React.Component {
   }
 
   render() {
-    // Navigation
     const { navigation } = this.props
+    const { isLoading, offer } = this.state
 
     return (
       <View>
-        {this.state.isLoading ? (
+        {isLoading ? (
           <Text style={{ fontSize: 22 }}>..Loading Data..</Text>
         ) : (
-          <View>
-            <Text style={{ fontSize: 22 }}>{this.state.offer.title}</Text>
+          <ScrollView>
+            <ImageSlider images={offer.images} />
+            <Text style={{ fontSize: 22 }}>{offer.title}</Text>
+            <Text style={{ fontSize: 16 }}>{offer.description}</Text>
+            <Text>Preço: R${offer.price}</Text>
             <Button
               title="Efetuar Compra"
               onPress={() => navigation.navigate('CheckoutPage')}
             />
-          </View>
+          </ScrollView>
         )}
       </View>
     )

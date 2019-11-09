@@ -18,7 +18,14 @@ class OffersList extends React.Component {
   }
 
   static navigationOptions = {
-    headerTitle: 'Lista de Ofertas'
+    headerTitle: 'Lista de Ofertas',
+    headerStyle: {
+      backgroundColor: '#1089ff'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    }
   }
 
   renderItem = ({ item }) => {

@@ -4,15 +4,22 @@ import {
   View,
   Text,
   TextInput,
-  Alert,
   Button
 } from 'react-native'
+import Hr from 'react-native-hr-component'
 
 import styles from './styles'
 
 class CheckoutPage extends React.Component {
   static navigationOptions = {
-    headerTitle: 'Efetuar compra'
+    headerTitle: 'Efetuar compra',
+    headerStyle: {
+      backgroundColor: '#1089ff'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    }
   }
 
   render() {
@@ -26,6 +33,7 @@ class CheckoutPage extends React.Component {
         <Text style={styles.label}>Detalhes do Produto: </Text>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.offerPrice}>R${price}</Text>
+        <Hr lineColor="#eee" width={1} text="⥥" />
         <Text style={styles.label}>Pagamento: </Text>
         <View style={styles.form}>
           <TextInput

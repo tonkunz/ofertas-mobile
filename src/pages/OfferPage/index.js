@@ -3,6 +3,7 @@ import { Button, Text, View, AsyncStorage, ScrollView } from 'react-native'
 import HTML from 'react-native-render-html'
 import ImageSlider from '../../components/ImageSlider'
 import Loading from '../../components/Loading'
+import Hr from 'react-native-hr-component'
 
 import styles from './styles'
 
@@ -10,7 +11,14 @@ import { getOffer } from '../../services/api'
 
 class OfferPage extends React.Component {
   static navigationOptions = {
-    headerTitle: 'Oferta específica'
+    headerTitle: 'Oferta específica',
+    headerStyle: {
+      backgroundColor: '#1089ff'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    }
   }
 
   state = {
@@ -38,6 +46,7 @@ class OfferPage extends React.Component {
             <View style={styles.content}>
               <Text style={styles.title}>{offer.title}</Text>
               <HTML html={offer.description} style={styles.description} />
+              <Hr lineColor="#eee" width={1} text="⥥" />
               <View style={styles.priceSession}>
                 <Text styles={styles.offerText}>Preço de mercado:</Text>
                 <Text style={styles.marketPrice}>R${offer.market_price}</Text>

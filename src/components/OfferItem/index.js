@@ -1,10 +1,19 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet, Button, Dimensions } from 'react-native'
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Dimensions,
+  AsyncStorage
+} from 'react-native'
 import AppButton from '../AppButton'
 
 export default function OfferItem({ offer, navigation }) {
   function handleNextPage() {
-    console.log('Go Next')
+    AsyncStorage.setItem('id', offer.id).then(() =>
+      navigation.navigate('OfferPage')
+    )
   }
 
   return (
@@ -60,5 +69,3 @@ const styles = StyleSheet.create({
     color: '#f0134d'
   }
 })
-
-// onPress={() => navigation.navigate('OfferPage')

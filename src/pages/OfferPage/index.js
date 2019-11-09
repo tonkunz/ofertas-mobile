@@ -1,9 +1,22 @@
 import React from 'react'
-import { Button, Text, View } from 'react-native'
+import { Button, Text, View, AsyncStorage } from 'react-native'
+
+import { getOffer } from '../../services/api'
 
 class OfferPage extends React.Component {
   static navigationOptions = {
     headerTitle: 'Oferta específica'
+  }
+
+  state = {
+    offer: {},
+    isLoading: true
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('id').then(id =>
+      getOffer(id).then(offer => this.setState({ offer, isLoading: false }))
+    )
   }
 
   render() {
@@ -11,19 +24,18 @@ class OfferPage extends React.Component {
     const { navigation } = this.props
 
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          borderWidth: 25,
-          borderColor: 'blue'
-        }}
-      >
-        <Text>OfferPage</Text>
-        <Button
-          title="Página de Ofertas"
-          onPress={() => navigation.navigate('CheckoutPage')}
-        />
+      <View>
+        {this.state.isLoading ? (
+          <Text style={{ fontSize: 22 }}>..Loading Data..</Text>
+        ) : (
+          <View>
+            <Text style={{ fontSize: 22 }}>{this.state.offer.title}</Text>
+            <Button
+              title="Efetuar Compra"
+              onPress={() => navigation.navigate('CheckoutPage')}
+            />
+          </View>
+        )}
       </View>
     )
   }
